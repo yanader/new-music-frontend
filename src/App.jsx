@@ -6,7 +6,7 @@ function App() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch("http://localhost:8080/albums")
+    fetch(`${import.meta.env.VITE_API_URL}/albums`)
       .then(res => res.json())
       .then(data => {
         setAlbums(data)
