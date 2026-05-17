@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import Login from "./Login"
 import AlbumDetail from "./AlbumDetail"
+import Nav from "./Nav"
+import Stats from "./Stats"
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080"
 
@@ -42,13 +44,15 @@ function Albums() {
   if (error) return <p>Error: {error}</p>
 
   return (
+    
     <div>
+      <Nav token={token} onLogout={handleLogout} />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h1>Albums</h1>
-        {token
+        {/* {token
           ? <button onClick={handleLogout}>Logout</button>
           : <button onClick={() => navigate("/login")}>Login</button>
-        }
+        } */}
       </div>
 
     <select value={selectedYear} onChange={e => setSelectedYear(Number(e.target.value))}>
@@ -93,6 +97,7 @@ function App() {
       <Route path="/" element={<Albums />} />
       <Route path="/login" element={<Login />} />
       <Route path="/albums/:id" element={<AlbumDetail />} />
+      <Route path="/stats" element={<Stats />} />
     </Routes>
   )
 }
