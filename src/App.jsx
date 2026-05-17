@@ -7,6 +7,7 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080"
 
 function Albums() {
   const [albums, setAlbums] = useState([])
+  const [selectedYear, setSelectedYear] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
@@ -22,6 +23,8 @@ function Albums() {
       .then(res => res.json())
       .then(data => {
         setAlbums(data)
+        const years = [...new Set(data.map(a => a.yearSet.listeningYear))]
+        setSelectedYear(Math.max(...years))
         setLoading(false)
       })
       .catch(err => {
@@ -29,6 +32,11 @@ function Albums() {
         setLoading(false)
       })
   }, [])
+  
+
+  const filteredAlbums = albums.filter(album => album.yearSet.listeningYear === selectedYear)
+
+  let uniqueYears = [...new Set(albums.map(album => album.yearSet.listeningYear))].sort((a, b) => a - b);  
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error}</p>
@@ -42,9 +50,17 @@ function Albums() {
           : <button onClick={() => navigate("/login")}>Login</button>
         }
       </div>
+
+    <select value={selectedYear} onChange={e => setSelectedYear(Number(e.target.value))}>
+      {uniqueYears.map(year => (
+        <option key={year} value={year}>{year}</option>
+      ))}
+    </select>
+
       <table border="1" cellPadding="8" cellSpacing="0">
         <thead>
           <tr>
+            <th>Year</th>
             <th>Artist</th>
             <th>Album</th>
             <th>Rating</th>
@@ -52,12 +68,13 @@ function Albums() {
           </tr>
         </thead>
         <tbody>
-          {albums.map(album => (
+          {filteredAlbums.map(album => (
             <tr
               key={album.id}
               onClick={() => navigate(`/albums/${album.id}`)}
               style={{ cursor: "pointer" }}
             >
+              <td>{album.yearSet.listeningYear}</td>
               <td>{album.artist?.name}</td>
               <td>{album.name}</td>
               <td>{album.rating ?? ""}</td>
