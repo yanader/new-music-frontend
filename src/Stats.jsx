@@ -47,6 +47,7 @@ function Stats() {
                     <th>Mode</th>
                     <th>% 7+</th>
                     <th>Std Dev</th>
+                    <th>Notes</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +61,7 @@ function Stats() {
                         <td>{stat.mode}</td>
                         <td>{stat.percentSevenPlus.toFixed(2)}</td>
                         <td>{stat.stdDev.toFixed(2)}</td>
+                        <td>{stat.notes}</td>
                     </tr>
                 ))}
             </tbody>
