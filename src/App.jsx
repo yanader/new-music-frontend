@@ -69,6 +69,7 @@ function Albums() {
             <th>Album</th>
             <th>Rating</th>
             <th>Notes</th>
+            <th>Contributors</th>
           </tr>
         </thead>
         <tbody>
@@ -83,6 +84,10 @@ function Albums() {
               <td>{album.name}</td>
               <td>{album.rating ?? ""}</td>
               <td>{album.notes ?? ""}</td>
+              <td>{album.contributors.map(cont => (
+                  <div key={cont.id}>{cont.name}</div>
+                  ))}
+              </td>
             </tr>
           ))}
         </tbody>
