@@ -31,7 +31,7 @@ function Stats() {
   return (
     <div>
         <Nav token={token} onLogout={handleLogout} />
-        <button onClick={() => navigate("/")}>← Back</button>
+        {/* <button onClick={() => navigate("/")}>← Back</button> */}
         <h1>Stats</h1>
         
 

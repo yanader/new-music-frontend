@@ -74,13 +74,18 @@ function AlbumDetail() {
   if (error && !album) return <p>Error: {error}</p>
 
   return (
+    
     <div>
+      
+      
       <button onClick={() => navigate("/")}>← Back</button>
       <h1>{album?.name}</h1>
       <h2>{album?.artist?.name}</h2>
 
       {success && <p style={{ color: "green" }}>Rating saved!</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
+
+
 
       <div>
         <label>Rating (1-10)</label><br />

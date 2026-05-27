@@ -5,6 +5,7 @@ import AlbumDetail from "./AlbumDetail"
 import Nav from "./Nav"
 import Stats from "./Stats"
 
+
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080"
 
 function Albums() {
