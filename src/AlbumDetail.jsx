@@ -5,9 +5,9 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080"
 
 function AlbumDetail() {
   const { id } = useParams()
-  const navigate = useNavigate()
-  const token = localStorage.getItem("token")
 
+  const token = localStorage.getItem("token")
+  const navigate = useNavigate()
   const [album, setAlbum] = useState(null)
   const [rating, setRating] = useState("")
   const [notes, setNotes] = useState("")
@@ -78,7 +78,6 @@ function AlbumDetail() {
     <div>
       
       
-      <button onClick={() => navigate("/")}>← Back</button>
       <h1>{album?.name}</h1>
       <h2>{album?.artist?.name}</h2>
 

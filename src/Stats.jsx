@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import Nav from "./Nav"
+
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080"
 
@@ -30,12 +30,8 @@ function Stats() {
 
   return (
     <div>
-        <Nav token={token} onLogout={handleLogout} />
-        {/* <button onClick={() => navigate("/")}>← Back</button> */}
         <h1>Stats</h1>
         
-
-
         <table border="1" cellPadding="8" cellSpacing="0">
             <thead>
                 <tr>
